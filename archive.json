@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-04T00:49:36.171721+00:00",
+  "timestamp": "2024-07-07T00:54:07.199390+00:00",
   "repo": "ietf-wg-ohai/draft-ohai-chunked-ohttp",
   "labels": [
     {
@@ -328,10 +328,12 @@
       "author": "kazuho",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "discuss"
+      ],
       "body": "Chunked Oblivious HTTP Messages relies on incremental delivery of HTTP request; as the client sends some chunks of an HTTP POST request, the server is expected to respond to them by sending chunks of an HTTP response.\r\n\r\nThis approach contradicts to what HTTP semantics states and has interoperability issues with proxies that buffer the entire request before starting to forward the request to the backend servers.\r\n\r\nSpecifically, [RFC 9110 section 7.6](https://datatracker.ietf.org/doc/html/rfc9110#name-message-forwarding) states:\r\n> An HTTP message can be parsed as a stream for incremental processing or forwarding downstream. However, senders and recipients cannot rely on incremental delivery of partial messages, since some implementations will buffer or delay message forwarding for the sake of network efficiency, security checks, or content transformations.\r\n\r\nWhen these buffering intermediaries are involved, Chunked Oblivious HTTP Messages will not work, and clients would see timeouts.\r\n\r\nConsidering that what we are developing is an application of HTTP, it would make sense to design the new protocol in a way that it does not add restrictions to HTTP semantics.\r\n\r\nOne way of moving forward would be to use extended CONNECT instead of HTTP POST for opening the bi-directional stream on which we exchange Chunked OHTTP Messages.",
       "createdAt": "2024-03-28T00:15:51Z",
-      "updatedAt": "2024-03-30T00:43:37Z",
+      "updatedAt": "2024-07-04T02:37:46Z",
       "closedAt": null,
       "comments": [
         {
@@ -885,6 +887,40 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOJtaXUM50Y9V6",
+      "title": "Maximum number of chunks",
+      "url": "https://github.com/ietf-wg-ohai/draft-ohai-chunked-ohttp/pull/21",
+      "state": "OPEN",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #9",
+      "createdAt": "2024-07-04T02:36:38Z",
+      "updatedAt": "2024-07-04T02:36:49Z",
+      "baseRepository": "ietf-wg-ohai/draft-ohai-chunked-ohttp",
+      "baseRefName": "main",
+      "baseRefOid": "1ce96ce4cfd2d7d3036d87fb9ceed40d51b843d3",
+      "headRepository": "ietf-wg-ohai/draft-ohai-chunked-ohttp",
+      "headRefName": "tfpauly-patch-2",
+      "headRefOid": "6ca4f972b94a195493b2d4e6cc42a1e447443f90",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@chris-wood please check if this looks right",
+          "createdAt": "2024-07-04T02:36:48Z",
+          "updatedAt": "2024-07-04T02:36:48Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }

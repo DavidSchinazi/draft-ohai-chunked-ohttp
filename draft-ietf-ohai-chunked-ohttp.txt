@@ -5,8 +5,8 @@
 OHAI Working Group                                              T. Pauly
 Internet-Draft                                                     Apple
 Intended status: Standards Track                              M. Thomson
-Expires: 6 November 2024                                         Mozilla
-                                                              5 May 2024
+Expires: 9 January 2025                                          Mozilla
+                                                             8 July 2024
 
 
                     Chunked Oblivious HTTP Messages
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 November 2024.
+   This Internet-Draft will expire on 9 January 2025.
 
 Copyright Notice
 
@@ -286,12 +286,16 @@ Table of Contents
    final_chunk = concat(sealed_final_chunk_len, sealed_final_chunk)
 
    HPKE already maintains a sequence number for sealing operations as
-   part of the context, so the order of chunks is protected.
+   part of the context, so the order of chunks is protected.  HPKE will
+   produce an error if the sequence number overflows, which puts a limit
+   on the number of chunks that can be sent in a request.
 
 6.2.  Response Encapsulation
 
    For responses, the first piece of data sent back is the response
-   nonce, as in the non-chunked variant.
+   nonce, as in the non-chunked variant.  As in the non-chunked variant,
+   the length of the nonce is max(Nn, Nk), where Nn and Nk are the
+   length of the AEAD nonce and key.
 
    entropy_len = max(Nn, Nk)
    response_nonce = random(entropy_len)
@@ -325,6 +329,11 @@ Table of Contents
    sealed_final_chunk = Seal(aead_key, chunk_nonce, "final", chunk)
    sealed_final_chunk_len = varint_encode(len(sealed_final_chunk))
    final_chunk = concat(sealed_final_chunk_len, sealed_final_chunk)
+
+   If the counter reached the maximum value that can be held in an
+   integer with Nn bits (that maximum being 2^Nn), where Nn is the
+   length of the AEAD nonce, the chunk_nonce would wrap and be reused.
+   Therefore, the response MUST NOT use 2^Nn or more chunks.
 
 7.  Security Considerations
 

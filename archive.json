@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-07T00:54:07.199390+00:00",
+  "timestamp": "2024-07-09T00:50:15.444282+00:00",
   "repo": "ietf-wg-ohai/draft-ohai-chunked-ohttp",
   "labels": [
     {
@@ -200,7 +200,7 @@
       "id": "I_kwDOJtaXUM5xWYCa",
       "title": "Maximum number of chunks",
       "url": "https://github.com/ietf-wg-ohai/draft-ohai-chunked-ohttp/issues/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-wood",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -209,8 +209,8 @@
       ],
       "body": "This is trivial, but the draft should note that there's a maximum number of chunks permissible before things break. For responses in particular, 2^Nn chunks will yield (key, nonce) reuse, which should be avoided.",
       "createdAt": "2023-09-18T20:29:27Z",
-      "updatedAt": "2024-03-11T19:38:56Z",
-      "closedAt": null,
+      "updatedAt": "2024-07-08T22:05:06Z",
+      "closedAt": "2024-07-08T22:05:06Z",
       "comments": []
     },
     {
@@ -893,24 +893,26 @@
       "id": "PR_kwDOJtaXUM50Y9V6",
       "title": "Maximum number of chunks",
       "url": "https://github.com/ietf-wg-ohai/draft-ohai-chunked-ohttp/pull/21",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tfpauly",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #9",
       "createdAt": "2024-07-04T02:36:38Z",
-      "updatedAt": "2024-07-04T02:36:49Z",
+      "updatedAt": "2024-07-08T22:05:19Z",
       "baseRepository": "ietf-wg-ohai/draft-ohai-chunked-ohttp",
       "baseRefName": "main",
       "baseRefOid": "1ce96ce4cfd2d7d3036d87fb9ceed40d51b843d3",
       "headRepository": "ietf-wg-ohai/draft-ohai-chunked-ohttp",
       "headRefName": "tfpauly-patch-2",
       "headRefOid": "6ca4f972b94a195493b2d4e6cc42a1e447443f90",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-08T22:05:05Z",
+      "mergedAt": "2024-07-08T22:05:05Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "93cd5616c05b984bae716fdfc3ca6cb04759d026"
+      },
       "comments": [
         {
           "author": "tfpauly",
@@ -918,6 +920,13 @@
           "body": "@chris-wood please check if this looks right",
           "createdAt": "2024-07-04T02:36:48Z",
           "updatedAt": "2024-07-04T02:36:48Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "(Chris confirmed offline)\r\n",
+          "createdAt": "2024-07-08T22:05:19Z",
+          "updatedAt": "2024-07-08T22:05:19Z"
         }
       ],
       "reviews": []
